@@ -10,7 +10,7 @@ namespace ConfigFile
         public static string menuPhoto = "background.jpg";
         public static string warningPhoto = "warning.jpg";       
         public static string errorMessage = "Произошла неизвестная ошибка. Попробуйте еще раз.";
-        public static long workChat = -855801202;
+        public static long workChat = -1001732715528;
         public static string workChatLink = "https://t.me/chimes_rebot";
         public static long logsChat = -1001787694544;
         public static long[] adminChatsId = {5740336806, 5370091665};
