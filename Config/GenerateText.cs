@@ -7,7 +7,7 @@ namespace ConfigFile
     {
         public static string MenuText(long chatId)
         {
-            string text = $"<b>CHIMES & CO</b>\n\n🆔 <b>ID:</b> <code>{chatId}</code>";
+            string text = $"<b>BLACKGUARD PARSER</b>\n\n🆔 <b>ID:</b> <code>{chatId}</code>";
             return text;
         }
 
