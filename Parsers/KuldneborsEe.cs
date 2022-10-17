@@ -27,7 +27,7 @@ namespace Parser
             chromeOptions.AddArguments("headless");
             chromeOptions.AddArguments("window-size=1800x900");
             chromeOptions.AddArguments("--disable-blink-features=AutomationControlled");
-            IWebDriver driver = new ChromeDriver(chromeOptions);
+            IWebDriver driver = new ChromeDriver("/usr/local/bin/chromedriver", chromeOptions);
 
             try
             {   
