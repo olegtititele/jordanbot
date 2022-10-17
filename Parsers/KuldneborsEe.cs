@@ -20,18 +20,14 @@ namespace Parser
             pagesPassed = 1;
             adsPassed = 0;
 
-//             var chromeOptions = new ChromeOptions();
-// //             chromeOptions.AddArgument($"user-agent={userAgent}");
-// //             chromeOptions.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
-//             chromeOptions.AddArgument("ignore-certificate-errors");
-//             chromeOptions.AddArguments("headless");
-//             chromeOptions.AddArguments("window-size=1800x900");
-// //             chromeOptions.AddArguments("--disable-blink-features=AutomationControlled");
-//             IWebDriver driver = new ChromeDriver(chromeOptions);
-            
-            FirefoxOptions options = new FirefoxOptions();
-            options.AddArguments("--headless");
-            IWebDriver driver = new FirefoxDriver(options);
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument($"user-agent={userAgent}");
+            chromeOptions.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
+            chromeOptions.AddArgument("ignore-certificate-errors");
+            chromeOptions.AddArguments("headless");
+            chromeOptions.AddArguments("window-size=1800x900");
+            chromeOptions.AddArguments("--disable-blink-features=AutomationControlled");
+            IWebDriver driver = new ChromeDriver(chromeOptions);
 
             try
             {   
