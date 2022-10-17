@@ -1,6 +1,7 @@
 using PostgreSQL;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 
 namespace Parser
 {
@@ -19,15 +20,27 @@ namespace Parser
             annoounCount = 0;
             pagesPassed = 1;
             adsPassed = 0;
+            
+            
+            var options = new FirefoxOptions();
+            options.AddArgument("--no-sandbox");
+            options.AddArgument("--disable-dev-shm-usage");
+            options.AddArgument($"--user-agent={userAgent}");
+            options.AddArgument("--disable-plugins-discovery");
+            options.AddArguments("--headless");
+            // options.SetPreference("permissions.default.image", 2);
+            options.SetPreference("dom.ipc.plugins.enabled.libflashplayer.so", false);
+            options.AddArguments("--disable-blink-features=AutomationControlled");
+            IWebDriver driver = new FirefoxDriver(options);
 
-            var chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument($"user-agent={userAgent}");
-            chromeOptions.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
-            chromeOptions.AddArgument("ignore-certificate-errors");
-            chromeOptions.AddArguments("headless");
-            chromeOptions.AddArguments("window-size=1800x900");
-            chromeOptions.AddArguments("--disable-blink-features=AutomationControlled");
-            IWebDriver driver = new ChromeDriver("/usr/local/bin/", chromeOptions);
+//             var chromeOptions = new ChromeOptions();
+//             chromeOptions.AddArgument($"user-agent={userAgent}");
+//             chromeOptions.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
+//             chromeOptions.AddArgument("ignore-certificate-errors");
+//             chromeOptions.AddArguments("headless");
+//             chromeOptions.AddArguments("window-size=1800x900");
+//             chromeOptions.AddArguments("--disable-blink-features=AutomationControlled");
+//             IWebDriver driver = new ChromeDriver("/usr/local/bin/", chromeOptions);
 
             try
             {   
