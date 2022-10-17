@@ -8,49 +8,49 @@ namespace Bot_Keyboards
         // Клавиатура сервисов
         public static InlineKeyboardMarkup CountriesSitesKb = new(new []
         {
-            new []
-            {
-                InlineKeyboardButton.WithCallbackData(text: "🌐 OLX 🌐", callbackData: "olx"),
-            },
-            new []
-            {
-                InlineKeyboardButton.WithCallbackData(text: "🌐 OPENSOOQ 🌐", callbackData: "opensooq"),
-            },
-            new []
-            {
-                InlineKeyboardButton.WithCallbackData(text: "🇩🇰 dba.dk 🇩🇰", callbackData: "dba.dk"),
-                InlineKeyboardButton.WithCallbackData(text: "🇸🇮 bolha.com 🇸🇮", callbackData: "bolha.com"),
-            },
-            new []
-            {
-                InlineKeyboardButton.WithCallbackData(text: "🇨🇿 sbazar.cz 🇨🇿", callbackData: "sbazar.cz"),
-                InlineKeyboardButton.WithCallbackData(text: "🇮🇱 homeless.co.il 🇮🇱", callbackData: "homeless.co.il"), 
-            },
-            new []
-            {
-                InlineKeyboardButton.WithCallbackData(text: "🇭🇺 jofogas.hu 🇭🇺", callbackData: "jofogas.hu"),
-                InlineKeyboardButton.WithCallbackData(text: "🇭🇷 oglasnik.hr 🇭🇷", callbackData: "oglasnik.hr"), 
-            },
-            new []
-            {
-                InlineKeyboardButton.WithCallbackData(text: "🇨🇭 anibis.ch 🇨🇭", callbackData: "anibis.ch"),
-                InlineKeyboardButton.WithCallbackData(text: "🇧🇬 bazar.bg 🇧🇬", callbackData: "bazar.bg"),
-            },
-            new []
-            {
-                InlineKeyboardButton.WithCallbackData(text: "🇩🇪 quoka.de 🇩🇪", callbackData: "quoka.de"),
-                InlineKeyboardButton.WithCallbackData(text: "🇸🇰 bazar.sk 🇸🇰", callbackData: "bazar.sk"),
-            },
-            new []
-            {
-                InlineKeyboardButton.WithCallbackData(text: "🇨🇦 kijiji.ca 🇨🇦", callbackData: "kijiji.ca"),
-                InlineKeyboardButton.WithCallbackData(text: "󠁧🇷🇴 lajumate.ro 🇷🇴", callbackData: "lajumate.ro"),
-            },
-            new []
-            {
-                InlineKeyboardButton.WithCallbackData(text: "🇦🇲 list.am 🇦🇲", callbackData: "list.am"),
-                InlineKeyboardButton.WithCallbackData(text: "🇩🇰 guloggratis.dk 🇩🇰", callbackData: "guloggratis.dk"), 
-            },
+//             new []
+//             {
+//                 InlineKeyboardButton.WithCallbackData(text: "🌐 OLX 🌐", callbackData: "olx"),
+//             },
+//             new []
+//             {
+//                 InlineKeyboardButton.WithCallbackData(text: "🌐 OPENSOOQ 🌐", callbackData: "opensooq"),
+//             },
+//             new []
+//             {
+//                 InlineKeyboardButton.WithCallbackData(text: "🇩🇰 dba.dk 🇩🇰", callbackData: "dba.dk"),
+//                 InlineKeyboardButton.WithCallbackData(text: "🇸🇮 bolha.com 🇸🇮", callbackData: "bolha.com"),
+//             },
+//             new []
+//             {
+//                 InlineKeyboardButton.WithCallbackData(text: "🇨🇿 sbazar.cz 🇨🇿", callbackData: "sbazar.cz"),
+//                 InlineKeyboardButton.WithCallbackData(text: "🇮🇱 homeless.co.il 🇮🇱", callbackData: "homeless.co.il"), 
+//             },
+//             new []
+//             {
+//                 InlineKeyboardButton.WithCallbackData(text: "🇭🇺 jofogas.hu 🇭🇺", callbackData: "jofogas.hu"),
+//                 InlineKeyboardButton.WithCallbackData(text: "🇭🇷 oglasnik.hr 🇭🇷", callbackData: "oglasnik.hr"), 
+//             },
+//             new []
+//             {
+//                 InlineKeyboardButton.WithCallbackData(text: "🇨🇭 anibis.ch 🇨🇭", callbackData: "anibis.ch"),
+//                 InlineKeyboardButton.WithCallbackData(text: "🇧🇬 bazar.bg 🇧🇬", callbackData: "bazar.bg"),
+//             },
+//             new []
+//             {
+//                 InlineKeyboardButton.WithCallbackData(text: "🇩🇪 quoka.de 🇩🇪", callbackData: "quoka.de"),
+//                 InlineKeyboardButton.WithCallbackData(text: "🇸🇰 bazar.sk 🇸🇰", callbackData: "bazar.sk"),
+//             },
+//             new []
+//             {
+//                 InlineKeyboardButton.WithCallbackData(text: "🇨🇦 kijiji.ca 🇨🇦", callbackData: "kijiji.ca"),
+//                 InlineKeyboardButton.WithCallbackData(text: "󠁧🇷🇴 lajumate.ro 🇷🇴", callbackData: "lajumate.ro"),
+//             },
+//             new []
+//             {
+//                 InlineKeyboardButton.WithCallbackData(text: "🇦🇲 list.am 🇦🇲", callbackData: "list.am"),
+//                 InlineKeyboardButton.WithCallbackData(text: "🇩🇰 guloggratis.dk 🇩🇰", callbackData: "guloggratis.dk"), 
+//             },
             new []
             {
                 InlineKeyboardButton.WithCallbackData(text: "🇪🇪 kuldnebors.ee 🇪🇪", callbackData: "kuldnebors.ee"),
