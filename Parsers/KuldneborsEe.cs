@@ -21,12 +21,12 @@ namespace Parser
             adsPassed = 0;
 
             var chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument($"user-agent={userAgent}");
-            chromeOptions.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
+//             chromeOptions.AddArgument($"user-agent={userAgent}");
+//             chromeOptions.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
             chromeOptions.AddArgument("ignore-certificate-errors");
             chromeOptions.AddArguments("headless");
             chromeOptions.AddArguments("window-size=1800x900");
-            chromeOptions.AddArguments("--disable-blink-features=AutomationControlled");
+//             chromeOptions.AddArguments("--disable-blink-features=AutomationControlled");
             IWebDriver driver = new ChromeDriver(chromeOptions);
 
             try
