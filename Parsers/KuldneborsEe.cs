@@ -25,13 +25,13 @@ namespace Parser
             var options = new FirefoxOptions();
             options.AddArgument("--no-sandbox");
             options.AddArgument("--disable-dev-shm-usage");
-            options.AddArgument($"--user-agent={userAgent}");
+//             options.AddArgument($"--user-agent={userAgent}");
             options.AddArguments("--headless");
-            options.AddArguments("--start-maximized");
+            options.AddArgument('-width=10');
+            options.AddArgument('-height=1080');
+//             options.AddArguments("--start-maximized");
             // options.SetPreference("permissions.default.image", 2);
             IWebDriver driver = new FirefoxDriver(options);
-
-            driver.Manage().Window.FullScreen();
 
 
             try
@@ -163,7 +163,7 @@ namespace Parser
                 // System.Threading.Thread.Sleep(5000);
                 // WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
                 // actions.MoveToElement(ifPhoneContainsNumber).Click().Build().Perform();
-                // actions.MoveToElement(ifPhoneContainsNumber).Click().Build().Perform();
+                
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                 js.ExecuteScript(getPhoneScript);
                 // js.ExecuteScript("arguments[0].scrollIntoView()", ifPhoneContainsNumber); 
@@ -181,9 +181,7 @@ namespace Parser
                 if(driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Contains("Näita numbrit"))
                 {
                     System.Threading.Thread.Sleep(5000);
-                    js.ExecuteScript(driver.FindElement(By.XPath("//a[@data-reveal-phone-numbers=\"\"]")).GetAttribute("onclick"));
-                    js.ExecuteScript("arguments[0].scrollIntoView()", driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")));
-                    js.ExecuteScript("arguments[0].click();", driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")));
+                    actions.MoveToElement(ifPhoneContainsNumber).Click().Build().Perform();
                 }
 
                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
