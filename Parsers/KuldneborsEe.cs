@@ -1,7 +1,7 @@
 using PostgreSQL;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Chrome;
 
 namespace Parser
 {
@@ -20,27 +20,17 @@ namespace Parser
             annoounCount = 0;
             pagesPassed = 1;
             adsPassed = 0;
-            
-            
+
             var options = new FirefoxOptions();
             options.AddArgument("--no-sandbox");
             options.AddArgument("--disable-dev-shm-usage");
             options.AddArgument($"--user-agent={userAgent}");
-            options.AddArgument("--disable-plugins-discovery");
+            // options.AddArgument("--disable-plugins-discovery");
             options.AddArguments("--headless");
             // options.SetPreference("permissions.default.image", 2);
-            options.SetPreference("dom.ipc.plugins.enabled.libflashplayer.so", false);
-            options.AddArguments("--disable-blink-features=AutomationControlled");
+            // options.SetPreference("dom.ipc.plugins.enabled.libflashplayer.so", false);
+            // options.AddArguments("--disable-blink-features=AutomationControlled");
             IWebDriver driver = new FirefoxDriver(options);
-
-//             var chromeOptions = new ChromeOptions();
-//             chromeOptions.AddArgument($"user-agent={userAgent}");
-//             chromeOptions.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
-//             chromeOptions.AddArgument("ignore-certificate-errors");
-//             chromeOptions.AddArguments("headless");
-//             chromeOptions.AddArguments("window-size=1800x900");
-//             chromeOptions.AddArguments("--disable-blink-features=AutomationControlled");
-//             IWebDriver driver = new ChromeDriver("/usr/local/bin/", chromeOptions);
 
             try
             {   
@@ -120,6 +110,7 @@ namespace Parser
         {
             foreach(string adLink in advertisementsLinks)
             {
+                Console.WriteLine(adLink);
                 if(!DB.CheckAdvestisement(userId, adLink))
                 {
                     if(annoounCount < userAnnounCount && DB.GetState(userId)=="Parser")
@@ -237,7 +228,15 @@ namespace Parser
             {
                 if(userSellerType == "Частное лицо")
                 {
-                    pageLink = $"{link}&search_O_user_types=-R&pob_evt_param={page}";
+                    if(link.Contains("search_O_user_types"))
+                    {
+                        pageLink = $"{link}&pob_evt_param={page}";
+                    }
+                    else
+                    {
+                        pageLink = $"{link}&search_O_user_types=-R&pob_evt_param={page}";
+                    }
+                    
                 }
                 else
                 {
