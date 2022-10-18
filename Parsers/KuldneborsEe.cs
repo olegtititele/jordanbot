@@ -21,9 +21,9 @@ namespace Parser
             adsPassed = 0;
 
             var options = new FirefoxOptions();
-//             options.AddArgument("--no-sandbox");
-//             options.AddArgument("--disable-dev-shm-usage");
-//             options.AddArgument($"--user-agent={userAgent}");
+            options.AddArgument("--no-sandbox");
+            options.AddArgument("--disable-dev-shm-usage");
+            options.AddArgument($"--user-agent={userAgent}");
             options.AddArguments("--headless");
 //             options.AddArguments("--start-maximized");
             // options.SetPreference("permissions.default.image", 2);
@@ -151,11 +151,14 @@ namespace Parser
 
             try
             {
-                var ifPhoneContainsNumber = driver.FindElement(By.XPath("/html/body/div[6]/div[2]/div[2]/div[2]/div[2]/div[3]/div/span/a"));
+                var ifPhoneContainsNumber = driver.FindElement(By.LinkText("Näita numbrit"));
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                System.Threading.Thread.Sleep(1000);
                 js.ExecuteScript("arguments[0].scrollIntoView()", ifPhoneContainsNumber); 
-                ifPhoneContainsNumber.Click();
-                ifPhoneContainsNumber.Click();
+                js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
+                js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
+                js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
+                js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
 
                 System.Threading.Thread.Sleep(3000);
 
