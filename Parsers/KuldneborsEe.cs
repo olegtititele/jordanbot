@@ -26,7 +26,7 @@ namespace Parser
             options.AddArgument($"--user-agent={userAgent}");
             options.AddArguments("--headless");
 //             options.AddArguments("--start-maximized");
-            // options.SetPreference("permissions.default.image", 2);
+            options.SetPreference("permissions.default.image", 2);
             IWebDriver driver = new FirefoxDriver(options);
 
 
@@ -152,7 +152,7 @@ namespace Parser
             try
             {
                 var ifPhoneContainsNumber = driver.FindElement(By.LinkText("Näita numbrit"));
-                Actions actions = new Actions(driver);
+
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                 js.ExecuteScript("arguments[0].scrollIntoView()", ifPhoneContainsNumber); 
                 js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
