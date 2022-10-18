@@ -25,6 +25,7 @@ namespace Parser
             options.AddArgument("--disable-dev-shm-usage");
             options.AddArgument($"--user-agent={userAgent}");
             options.AddArguments("--headless");
+            options.AddArguments("--start-maximized");
             // options.SetPreference("permissions.default.image", 2);
             IWebDriver driver = new FirefoxDriver(options);
 
@@ -151,9 +152,8 @@ namespace Parser
             try
             {
                 var ifPhoneContainsNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]"));
-                ifPhoneContainsNumber.SendKeys(Keys.Enter);
-                ifPhoneContainsNumber.Submit();
-                ifPhoneContainsNumber.Submit();
+                ifPhoneContainsNumber.Click();
+                ifPhoneContainsNumber.Click();
 
                 System.Threading.Thread.Sleep(3000);
 
