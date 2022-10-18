@@ -233,7 +233,6 @@ namespace Parser
 
             if(link.Contains("https://www.kuldnebors.ee/"))
             {
-                https://www.kuldnebors.ee/search/telefonid/search.mec?pob_evt=onpageindex&pob_action=search&pob_cat_id=10684&pob_page_index=1&pob_page_size=50&search_O_user_types=-R&pob_evt_param=5
                 if(userSellerType == "Частное лицо")
                 {
                     if(link.Contains("search_O_user_types"))
