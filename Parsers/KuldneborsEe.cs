@@ -1,7 +1,6 @@
 using PostgreSQL;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 namespace Parser
 {
@@ -25,12 +24,10 @@ namespace Parser
             options.AddArgument("--no-sandbox");
             options.AddArgument("--disable-dev-shm-usage");
             options.AddArgument($"--user-agent={userAgent}");
-            // options.AddArgument("--disable-plugins-discovery");
             options.AddArguments("--headless");
             // options.SetPreference("permissions.default.image", 2);
-            // options.SetPreference("dom.ipc.plugins.enabled.libflashplayer.so", false);
-            // options.AddArguments("--disable-blink-features=AutomationControlled");
             IWebDriver driver = new FirefoxDriver(options);
+
 
             try
             {   
@@ -115,6 +112,7 @@ namespace Parser
                 {
                     if(annoounCount < userAnnounCount && DB.GetState(userId)=="Parser")
                     {
+                        Console.WriteLine(adLink);
                         adsPassed++;
                         DB.UpdateStatistic(userId, pagesPassed, adsPassed);
                         System.Threading.Thread.Sleep(1000);
@@ -152,11 +150,11 @@ namespace Parser
 
             try
             {
-                var ifPhoneContainsNumber = driver.FindElement(By.XPath("//a[@data-reveal-phone-numbers=\"\"]"));
-                Actions actions = new Actions(driver);
-                actions.MoveToElement(ifPhoneContainsNumber);
-                actions.Perform();
+                var ifPhoneContainsNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]"));
+
                 ifPhoneContainsNumber.Click();
+                ifPhoneContainsNumber.Click();
+
                 System.Threading.Thread.Sleep(3000);
 
                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
