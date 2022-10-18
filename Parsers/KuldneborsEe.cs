@@ -166,6 +166,10 @@ namespace Parser
                 
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                 js.ExecuteScript(getPhoneScript);
+                js.ExecuteScript(getPhoneScript);
+                js.ExecuteScript(getPhoneScript);
+                js.ExecuteScript(getPhoneScript);
+                js.ExecuteScript(getPhoneScript);
 //                 // js.ExecuteScript("arguments[0].scrollIntoView()", ifPhoneContainsNumber); 
 //                 // js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
 //                 // js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
@@ -174,7 +178,7 @@ namespace Parser
 //                 // ifPhoneContainsNumber.Click();
 //                 // ifPhoneContainsNumber.Click();
 //                     driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Click();
-                    System.Threading.Thread.Sleep(3000);
+                    System.Threading.Thread.Sleep(60000);
                 Console.WriteLine(driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).GetAttribute("innerHTML"));
 
 //                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
