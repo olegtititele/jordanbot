@@ -154,7 +154,7 @@ namespace Parser
             try
             {
                     Console.WriteLine(driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).GetAttribute("innerHTML"));
-                var getPhoneScript = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a)).GetAttribute("onclick");
+                    var getPhoneScript = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).GetAttribute("onclick");
 //                 // var ifPhoneContainsNumber = driver.FindElement(By.LinkText("Näita numbrit"));
 //                 // // Actions actions = new Actions(driver);
 //                 // driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]")).Click();
