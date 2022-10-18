@@ -21,11 +21,11 @@ namespace Parser
             adsPassed = 0;
 
             var options = new FirefoxOptions();
-            options.AddArgument("--no-sandbox");
-            options.AddArgument("--disable-dev-shm-usage");
-            options.AddArgument($"--user-agent={userAgent}");
+//             options.AddArgument("--no-sandbox");
+//             options.AddArgument("--disable-dev-shm-usage");
+//             options.AddArgument($"--user-agent={userAgent}");
             options.AddArguments("--headless");
-            options.AddArguments("--start-maximized");
+//             options.AddArguments("--start-maximized");
             // options.SetPreference("permissions.default.image", 2);
             IWebDriver driver = new FirefoxDriver(options);
 
