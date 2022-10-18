@@ -153,6 +153,9 @@ namespace Parser
             {
                 var ifPhoneContainsNumber = driver.FindElement(By.XPath("//a[@data-reveal-phone-numbers=\"\"]"));
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                System.Threading.Thread.Sleep(1000);
+                js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
+                js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
                 js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
                 js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
 
