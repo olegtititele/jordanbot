@@ -27,7 +27,7 @@ namespace Parser
             options.AddArgument("--disable-dev-shm-usage");
             options.AddArgument($"--user-agent={userAgent}");
             options.AddArguments("--headless");
-            // options.AddArguments("--start-maximized");
+            options.AddArguments("--start-maximized");
             // options.SetPreference("permissions.default.image", 2);
             IWebDriver driver = new FirefoxDriver(options);
 
@@ -178,7 +178,14 @@ namespace Parser
                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
 
 
+                if(driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Contains("Näita numbrit"))
+                {
+                    System.Threading.Thread.Sleep(5000);
+                    js.ExecuteScript(driver.FindElement(By.XPath("//a[@data-reveal-phone-numbers=\"\"]")).GetAttribute("onclick"));
+                }
 
+                sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
+                Console.WriteLine(sellerPhoneNumber);
 
                 if(!sellerPhoneNumber.Contains("+"))
                 {
@@ -191,8 +198,6 @@ namespace Parser
                         sellerPhoneNumber = $"+372{sellerPhoneNumber}";
                     }
                 }
-                
-                Console.WriteLine(sellerPhoneNumber);
             }
             catch(Exception e)
             {
