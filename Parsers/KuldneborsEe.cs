@@ -155,7 +155,7 @@ namespace Parser
 
             try
             {
-                    Console.WriteLine(driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]")).GetAttribute("innerHTML"));
+                    Console.WriteLine(driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).GetAttribute("innerHTML"));
 //                 var getPhoneScript = driver.FindElement(By.XPath("//a[@data-reveal-phone-numbers=\"\"]")).GetDomAttribute("onclick");
 //                 // var ifPhoneContainsNumber = driver.FindElement(By.LinkText("Näita numbrit"));
 //                 // // Actions actions = new Actions(driver);
@@ -174,8 +174,8 @@ namespace Parser
 //                 // js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
 //                 // ifPhoneContainsNumber.Click();
 //                 // ifPhoneContainsNumber.Click();
-                    driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Click();
-                    System.Threading.Thread.Sleep(3000);
+//                     driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Click();
+//                     System.Threading.Thread.Sleep(3000);
 
 //                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
 
