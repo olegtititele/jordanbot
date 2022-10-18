@@ -182,6 +182,8 @@ namespace Parser
                 {
                     System.Threading.Thread.Sleep(5000);
                     js.ExecuteScript(driver.FindElement(By.XPath("//a[@data-reveal-phone-numbers=\"\"]")).GetAttribute("onclick"));
+                    js.ExecuteScript("arguments[0].scrollIntoView()", driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")));
+                    js.ExecuteScript("arguments[0].click();", driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")));
                 }
 
                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
