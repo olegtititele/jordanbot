@@ -230,7 +230,8 @@ namespace Parser
                 {
                     if(link.Contains("search_O_user_types"))
                     {
-                        pageLink = $"{link}&pob_evt_param={page}";
+                        
+                        pageLink = $"{link.Replace("&search_O_deal_type=M", "&search_O_user_types=-R")}&pob_evt_param={page}";
                     }
                     else
                     {
