@@ -153,10 +153,11 @@ namespace Parser
             {
                 var ifPhoneContainsNumber = driver.FindElement(By.LinkText("Näita numbrit"));
                 Actions actions = new Actions(driver);
-                System.Threading.Thread.Sleep(5000);
-                actions.MoveToElement(ifPhoneContainsNumber).Click().Build().Perform();
-                actions.MoveToElement(ifPhoneContainsNumber).Click().Build().Perform();
-
+                IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                js.ExecuteScript("arguments[0].scrollIntoView()", ifPhoneContainsNumber); 
+                js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
+                js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
+                
                 System.Threading.Thread.Sleep(3000);
 
                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
