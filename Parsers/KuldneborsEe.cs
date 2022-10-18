@@ -161,8 +161,7 @@ namespace Parser
 
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                 js.ExecuteScript("arguments[0].scrollIntoView()", ifPhoneContainsNumber); 
-                js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
-                js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
+                ifPhoneContainsNumber.Click();
                 
                 System.Threading.Thread.Sleep(3000);
 
