@@ -27,8 +27,6 @@ namespace Parser
             options.AddArgument("--disable-dev-shm-usage");
 //             options.AddArgument($"--user-agent={userAgent}");
             options.AddArguments("--headless");
-            options.AddArgument("-width=10");
-            options.AddArgument("-height=1080");
 //             options.AddArguments("--start-maximized");
             // options.SetPreference("permissions.default.image", 2);
             IWebDriver driver = new FirefoxDriver(options);
