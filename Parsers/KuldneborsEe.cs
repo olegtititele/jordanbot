@@ -161,6 +161,8 @@ namespace Parser
 
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                 js.ExecuteScript("arguments[0].scrollIntoView()", ifPhoneContainsNumber); 
+                driver.FindElement(By.XPath("//span[@id=\"onetrust-pc-dark-filter ot-fade-in\"]")).Click();
+                System.Threading.Thread.Sleep(3000);
                 ifPhoneContainsNumber.Click();
                 
                 System.Threading.Thread.Sleep(3000);
