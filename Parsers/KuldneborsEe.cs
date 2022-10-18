@@ -49,7 +49,7 @@ namespace Parser
                     if(annoounCount < userAnnounCount && DB.GetState(userId)=="Parser")
                     {
                         driver.Navigate().GoToUrl(GenerateLink(userSellerType, userLink, page));
-                        Console.WriteLine(GenerateLink(userSellerType, userLink, page));
+                        
                         var advertisements = driver.FindElements(By.XPath("//h4[@class=\"kb-object__heading \"]//a[@target=\"_self\"]"));
                         if(advertisements != null)
                         {
@@ -117,6 +117,7 @@ namespace Parser
                     {
                         adsPassed++;
                         DB.UpdateStatistic(userId, pagesPassed, adsPassed);
+                        System.Threading.Thread.Sleep(1000);
                         getPageInfo(driver, adLink, userId, localBlacklist, globalBlacklist, userAdRegDate);
                     }
                     else
@@ -154,8 +155,9 @@ namespace Parser
                 var ifPhoneContainsNumber = driver.FindElement(By.XPath("//a[@data-reveal-phone-numbers=\"\"]"));
                 Actions actions = new Actions(driver);
                 actions.MoveToElement(ifPhoneContainsNumber);
+                actions.Perform();
                 ifPhoneContainsNumber.Click();
-                System.Threading.Thread.Sleep(2000);
+                System.Threading.Thread.Sleep(3000);
 
                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
                 
