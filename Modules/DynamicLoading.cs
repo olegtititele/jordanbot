@@ -26,13 +26,25 @@ namespace Modules
                     {
                         line = $"❌<b><u>Поиск объявлений завершен. Парсер не получил ни одного объявления.</u></b>\n\n╔Получено объявлений: <b>{DB.LengthHashData(chatId)}</b>\n╠Пройдено страниц: <b>{statistic[0]}</b>\n╚Пройдено объявлений: <b>{statistic[1]}</b>";
 
-                        await botClient.EditMessageCaptionAsync(
-                            chatId: chatId,
-                            messageId: messageId,
-                            caption: line,
-                            parseMode: ParseMode.Html,
-                            replyMarkup: Keyboards.BackFromParse
-                        );
+                        try
+                        {
+                            await botClient.EditMessageCaptionAsync(
+                                chatId: chatId,
+                                messageId: messageId,
+                                caption: line,
+                                parseMode: ParseMode.Html,
+                                replyMarkup: Keyboards.BackFromParse
+                            );
+                        }
+                        catch
+                        {
+                            await botClient.SendTextMessageAsync(
+                                chatId: chatId,
+                                text: line,
+                                parseMode: ParseMode.Html
+                            );
+                        }
+                        
                         
                         string state = "MainMenu";
                         DB.UpdateState(chatId, state);
@@ -44,12 +56,24 @@ namespace Modules
                         int length = DB.LengthHashData(chatId);
                         line = $"✅<b><u>Поиск объявлений завершен.</u></b>\n\n╔Получено объявлений: <b>{length}</b>\n╠Пройдено страниц: <b>{statistic[0]}</b>\n╚Пройдено объявлений: <b>{statistic[1]}</b>";
 
-                        await botClient.EditMessageCaptionAsync(
-                            chatId: chatId,
-                            messageId: messageId,
-                            caption: line,
-                            parseMode: ParseMode.Html
-                        );
+                        try
+                        {
+                            await botClient.EditMessageCaptionAsync(
+                                chatId: chatId,
+                                messageId: messageId,
+                                caption: line,
+                                parseMode: ParseMode.Html
+                            );
+                        }
+                        catch
+                        {
+                            await botClient.SendTextMessageAsync(
+                                chatId: chatId,
+                                text: line,
+                                parseMode: ParseMode.Html
+                            );
+                        }
+                        
                         Display.HashDisplayAds(botClient, chatId, length);
                         return;
                     }
@@ -60,13 +84,24 @@ namespace Modules
                     {
                         line = $"❌<b>Необходимо заменить токен.</b>\n\n╔Получено объявлений: <b>{DB.LengthHashData(chatId)}</b>\n╠Пройдено страниц: <b>{statistic[0]}</b>\n╚Пройдено объявлений: <b>{statistic[1]}</b>";
 
-                        await botClient.EditMessageCaptionAsync(
-                            chatId: chatId,
-                            messageId: messageId,
-                            caption: line,
-                            parseMode: ParseMode.Html,
-                            replyMarkup: Keyboards.BackFromParse
-                        );
+                        try
+                        {
+                            await botClient.EditMessageCaptionAsync(
+                                chatId: chatId,
+                                messageId: messageId,
+                                caption: line,
+                                parseMode: ParseMode.Html,
+                                replyMarkup: Keyboards.BackFromParse
+                            );
+                        }
+                        catch
+                        {
+                            await botClient.SendTextMessageAsync(
+                                chatId: chatId,
+                                text: line,
+                                parseMode: ParseMode.Html
+                            );
+                        }
                         
                         string state = "MainMenu";
                         DB.UpdateState(chatId, state);
@@ -78,12 +113,23 @@ namespace Modules
                         int length = DB.LengthHashData(chatId);
                         line = $"✅<b>Необходимо заменить токен.\n<u>Поиск объявлений завершен.</u></b>\n\n╔Получено объявлений: <b>{length}</b>\n╠Пройдено страниц: <b>{statistic[0]}</b>\n╚Пройдено объявлений: <b>{statistic[1]}</b>";
 
-                        await botClient.EditMessageCaptionAsync(
-                            chatId: chatId,
-                            messageId: messageId,
-                            caption: line,
-                            parseMode: ParseMode.Html
-                        );
+                        try
+                        {
+                            await botClient.EditMessageCaptionAsync(
+                                chatId: chatId,
+                                messageId: messageId,
+                                caption: line,
+                                parseMode: ParseMode.Html
+                            );
+                        }
+                        catch
+                        {
+                            await botClient.SendTextMessageAsync(
+                                chatId: chatId,
+                                text: line,
+                                parseMode: ParseMode.Html
+                            );
+                        }
                         Display.HashDisplayAds(botClient, chatId, length);
                         return;
                     }
@@ -94,11 +140,11 @@ namespace Modules
                     {
                         StartLoading(botClient, chatId, messageId);
                         lengthHash = DB.LengthHashData(chatId);
-                        System.Threading.Thread.Sleep(10000);
+                        System.Threading.Thread.Sleep(5000);
                     }
                     else
                     {
-                        System.Threading.Thread.Sleep(10000);
+                        System.Threading.Thread.Sleep(5000);
                     }
                 }
             }
