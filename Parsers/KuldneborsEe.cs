@@ -30,6 +30,8 @@ namespace Parser
             options.AddArgument("--start-maximized");
             options.AddArgument("--disable-gpu");
             options.AddArgument("--ignore-certificate-errors");
+            options.AddArgument("--js-flags=--noexpose_wasm");
+            
             IWebDriver driver = new FirefoxDriver(options);
             driver.Manage().Window.FullScreen();
 
