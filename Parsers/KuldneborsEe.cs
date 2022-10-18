@@ -2,7 +2,7 @@ using PostgreSQL;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
-
+using OpenQA.Selenium.Interactions;
 namespace Parser
 {
     public class KuldneborsEe
@@ -49,6 +49,7 @@ namespace Parser
                     if(annoounCount < userAnnounCount && DB.GetState(userId)=="Parser")
                     {
                         driver.Navigate().GoToUrl(GenerateLink(userSellerType, userLink, page));
+                        Console.WriteLine(GenerateLink(userSellerType, userLink, page));
                         var advertisements = driver.FindElements(By.XPath("//h4[@class=\"kb-object__heading \"]//a[@target=\"_self\"]"));
                         if(advertisements != null)
                         {
@@ -110,7 +111,6 @@ namespace Parser
         {
             foreach(string adLink in advertisementsLinks)
             {
-                Console.WriteLine(adLink);
                 if(!DB.CheckAdvestisement(userId, adLink))
                 {
                     if(annoounCount < userAnnounCount && DB.GetState(userId)=="Parser")
@@ -152,10 +152,13 @@ namespace Parser
             try
             {
                 var ifPhoneContainsNumber = driver.FindElement(By.XPath("//a[@data-reveal-phone-numbers=\"\"]"));
+                Actions actions = new Actions(driver);
+                actions.MoveToElement(ifPhoneContainsNumber);
                 ifPhoneContainsNumber.Click();
                 System.Threading.Thread.Sleep(2000);
 
                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
+                
 
                 if(!sellerPhoneNumber.Contains("+"))
                 {
@@ -168,9 +171,11 @@ namespace Parser
                         sellerPhoneNumber = $"+372{sellerPhoneNumber}";
                     }
                 }
+                Console.WriteLine(sellerPhoneNumber);
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine(e);
                 return;
             }
 
@@ -226,18 +231,17 @@ namespace Parser
 
             if(link.Contains("https://www.kuldnebors.ee/"))
             {
+                https://www.kuldnebors.ee/search/telefonid/search.mec?pob_evt=onpageindex&pob_action=search&pob_cat_id=10684&pob_page_index=1&pob_page_size=50&search_O_user_types=-R&pob_evt_param=5
                 if(userSellerType == "Частное лицо")
                 {
                     if(link.Contains("search_O_user_types"))
                     {
-                        
-                        pageLink = $"{link.Replace("&search_O_deal_type=M", "&search_O_user_types=-R")}&pob_evt_param={page}";
+                        pageLink = $"{link.Replace("&search_O_deal_type=M", "&search_O_user_types=-R")}&pob_evt_param={page}&pob_evt=onpageindex&pob_page_index=1";
                     }
                     else
                     {
-                        pageLink = $"{link}&search_O_user_types=-R&pob_evt_param={page}";
+                        pageLink = $"{link}&search_O_user_types=-R&pob_evt_param={page}&pob_evt=onpageindex&pob_page_index=1";
                     }
-                    
                 }
                 else
                 {
@@ -248,11 +252,11 @@ namespace Parser
             {
                 if(userSellerType == "Частное лицо")
                 {
-                    pageLink = $"https://www.kuldnebors.ee/search/search.mec?search_evt=onsearch&pob_action=search&search_O_string={link}&search_O_user_types=-R&pob_evt_param={page}";
+                    pageLink = $"https://www.kuldnebors.ee/search/search.mec?search_evt=onsearch&pob_action=search&search_O_string={link}&search_O_user_types=-R&pob_evt_param={page}&pob_evt=onpageindex&pob_page_index=1";
                 }
                 else
                 {
-                     pageLink = $"https://www.kuldnebors.ee/search/search.mec?search_evt=onsearch&pob_action=search&search_O_string={link}&pob_evt_param={page}";
+                     pageLink = $"https://www.kuldnebors.ee/search/search.mec?search_evt=onsearch&pob_action=search&search_O_string={link}&pob_evt_param={page}&pob_evt=onpageindex&pob_page_index=1";
                 }
             }
             return pageLink;
