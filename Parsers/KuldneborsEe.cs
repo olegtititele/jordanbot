@@ -154,11 +154,8 @@ namespace Parser
                 var ifPhoneContainsNumber = driver.FindElement(By.LinkText("Näita numbrit"));
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                 System.Threading.Thread.Sleep(1000);
-                js.ExecuteScript("arguments[0].scrollIntoView()", ifPhoneContainsNumber); 
-                js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
-                js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
-                js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
-                js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
+                ifPhoneContainsNumber.Click();
+                ifPhoneContainsNumber.Click();
 
                 System.Threading.Thread.Sleep(3000);
 
