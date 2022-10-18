@@ -180,6 +180,7 @@ namespace Parser
 
                 if(driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Contains("Näita numbrit"))
                 {
+                    Actions actions = new Actions(driver);
                     System.Threading.Thread.Sleep(5000);
                     actions.MoveToElement(ifPhoneContainsNumber).Click().Build().Perform();
                 }
