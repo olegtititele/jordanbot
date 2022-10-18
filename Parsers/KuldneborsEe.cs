@@ -155,10 +155,11 @@ namespace Parser
 
             try
             {
+                    Console.WriteLine(driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]")).GetAttribute("innerHTML"));
 //                 var getPhoneScript = driver.FindElement(By.XPath("//a[@data-reveal-phone-numbers=\"\"]")).GetDomAttribute("onclick");
 //                 // var ifPhoneContainsNumber = driver.FindElement(By.LinkText("Näita numbrit"));
 //                 // // Actions actions = new Actions(driver);
-//                 // driver.FindElement(By.XPath("//span[@id=\"onetrust-pc-dark-filter ot-fade-in\"]")).Click();
+//                 // driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]")).Click();
 
 //                 // System.Threading.Thread.Sleep(5000);
 //                 // WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
