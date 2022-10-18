@@ -151,8 +151,8 @@ namespace Parser
             try
             {
                 var ifPhoneContainsNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]"));
-                Actions action = new Actions(driver); 
-                action.MoveToElement(ifPhoneContainsNumber);
+                Actions builder = new Actions(driver);
+                builder.KeyDown(Keys.Tab).Perform();
                 
                 ifPhoneContainsNumber.Click();
                 ifPhoneContainsNumber.Click();
