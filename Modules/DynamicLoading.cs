@@ -11,7 +11,6 @@ namespace Modules
     {
         async public static void DynamicLoading(ITelegramBotClient botClient, long chatId, int messageId)
         {
-            int oldHashLength = DB.LengthHashData(chatId);
             StartLoading(botClient, chatId, messageId);
             
             while(true)
@@ -20,6 +19,9 @@ namespace Modules
                 string line;
                 List<string> statistic = DB.GetStatistic(chatId);
                 int lengthHash = DB.LengthHashData(chatId);
+                int oldHashLength = DB.LengthHashData(chatId);
+                System.Threading.Thread.Sleep(5000);
+
                 if(DB.GetState(chatId)=="StopParser" || DB.GetState(chatId)=="MainMenu")
                 {
                     if(lengthHash == 0)
@@ -140,11 +142,6 @@ namespace Modules
                     {
                         StartLoading(botClient, chatId, messageId);
                         lengthHash = DB.LengthHashData(chatId);
-                        System.Threading.Thread.Sleep(5000);
-                    }
-                    else
-                    {
-                        System.Threading.Thread.Sleep(5000);
                     }
                 }
             }
