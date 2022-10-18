@@ -182,7 +182,7 @@ namespace Parser
                 {
                     Actions actions = new Actions(driver);
                     System.Threading.Thread.Sleep(5000);
-                    actions.MoveToElement(ifPhoneContainsNumber).Click().Build().Perform();
+                    actions.MoveToElement(driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]"))).Click().Build().Perform();
                 }
 
                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
