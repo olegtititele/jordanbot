@@ -156,7 +156,7 @@ namespace Parser
             try
             {
                     Console.WriteLine(driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).GetAttribute("innerHTML"));
-//                 var getPhoneScript = driver.FindElement(By.XPath("//a[@data-reveal-phone-numbers=\"\"]")).GetDomAttribute("onclick");
+                var getPhoneScript = driver.FindElement(By.XPath("//a[@data-reveal-phone-numbers=\"\"]")).GetDomAttribute("onclick");
 //                 // var ifPhoneContainsNumber = driver.FindElement(By.LinkText("Näita numbrit"));
 //                 // // Actions actions = new Actions(driver);
 //                 // driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]")).Click();
@@ -165,8 +165,8 @@ namespace Parser
 //                 // WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 //                 // actions.MoveToElement(ifPhoneContainsNumber).Click().Build().Perform();
                 
-//                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-//                 js.ExecuteScript(getPhoneScript);
+                IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                js.ExecuteScript(getPhoneScript);
 //                 // js.ExecuteScript("arguments[0].scrollIntoView()", ifPhoneContainsNumber); 
 //                 // js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
 //                 // js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
@@ -175,7 +175,8 @@ namespace Parser
 //                 // ifPhoneContainsNumber.Click();
 //                 // ifPhoneContainsNumber.Click();
 //                     driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Click();
-//                     System.Threading.Thread.Sleep(3000);
+                    System.Threading.Thread.Sleep(3000);
+                Console.WriteLine(driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).GetAttribute("innerHTML"));
 
 //                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
 
