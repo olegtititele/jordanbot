@@ -25,7 +25,13 @@ namespace Parser
             options.AddArgument("--disable-dev-shm-usage");
             options.AddArgument($"--user-agent={userAgent}");
             options.AddArguments("--headless");
+            options.AddArgument("--window-size=1920,1080")
+            options.AddArgument("--disable-extensions")
+            options.AddArgument("--start-maximized")
+            options.AddArgument('--disable-gpu')
+            options.AddArgument('--ignore-certificate-errors')
             IWebDriver driver = new FirefoxDriver(options);
+            driver.Manage().Window.FullScreen();
 
 
             try
