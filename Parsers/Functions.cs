@@ -249,7 +249,7 @@ namespace Parser
         }
 
         // Добавить объявление в бд
-        public static void InsertNewAd(long userId, string platform, string adTitle, string adPrice, string adRegDate, string adLink, string adLocation, string adImage, string sellerName, string sellerLink, string phoneNumber, string sellerTotalAds, string sellerRegDate, string sellerType, string sellerRating, string globalBlacklist)
+        public static async Task InsertNewAd(long userId, string platform, string adTitle, string adPrice, string adRegDate, string adLink, string adLocation, string adImage, string sellerName, string sellerLink, string phoneNumber, string sellerTotalAds, string sellerRegDate, string sellerType, string sellerRating, string globalBlacklist)
         {
             try
             {
