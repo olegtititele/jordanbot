@@ -160,6 +160,7 @@ namespace Parser
             {
                 var element = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                
                 try
                 {
                     
@@ -178,7 +179,7 @@ namespace Parser
 //                     var getPhoneScript = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).GetAttribute("onclick");
 // //                 // var ifPhoneContainsNumber = driver.FindElement(By.LinkText("Näita numbrit"));
 // //                 // // Actions actions = new Actions(driver);
-                js.ExecuteScript("arguments[0].scrollIntoView()", ifPhoneContainsNumber); 
+                js.ExecuteScript("arguments[0].scrollIntoView()", element); 
                 element.Click();
                  element.Click();
                  element.Click();
