@@ -167,7 +167,6 @@ namespace Parser
 // //                 js.ExecuteScript("arguments[0].remove();", element1);
                 
 //                 js.ExecuteScript("arguments[0].click();", element);
-                System.Threading.Thread.Sleep(3000);
 
                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
                 Console.WriteLine(sellerPhoneNumber);
