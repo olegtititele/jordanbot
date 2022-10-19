@@ -1,8 +1,6 @@
 using PostgreSQL;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
 
 namespace Parser
 {
@@ -107,12 +105,8 @@ namespace Parser
         }
 
 
-        private static async void GetLinks(IWebDriver driver, List<string> advertisementsLinks, int userAnnounCount, long userId, string localBlacklist, string globalBlacklist, string userAdRegDate)
+        private static void GetLinks(IWebDriver driver, List<string> advertisementsLinks, int userAnnounCount, long userId, string localBlacklist, string globalBlacklist, string userAdRegDate)
         {
-            Console.WriteLine("Запуск загрузки.");
-            int maxTasks = 20; // максимальное количество одновременно работающих задач
-            using SemaphoreSlim semaphore = new SemaphoreSlim(maxTasks);
-            List<Task> tasks = new List<Task>();
             foreach(string adLink in advertisementsLinks)
             {
                 if(!DB.CheckAdvestisement(userId, adLink))
@@ -121,14 +115,8 @@ namespace Parser
                     {
                         adsPassed++;
                         DB.UpdateStatistic(userId, pagesPassed, adsPassed);
-                        await semaphore.WaitAsync();
-
-                        tasks.Add(Task.Run(async () =>
-                        {
-                            await getPageInfo(driver, adLink, userId, localBlacklist, globalBlacklist, userAdRegDate);
-                            semaphore.Release(); // сообщить, что задач стало меньше
-                        }));
-                        
+                        System.Threading.Thread.Sleep(300);
+                        getPageInfo(driver, adLink, userId, localBlacklist, globalBlacklist, userAdRegDate);
                     }
                     else
                     {
@@ -139,12 +127,10 @@ namespace Parser
                 }
                 continue;
             }
-            await Task.WhenAll(tasks); // ждать завершения всех задач
-            Console.WriteLine("Загрузка завершена.");
         }
 
 
-        static async Task getPageInfo(IWebDriver driver, string adLink, long userId, string localBlacklist, string globalBlacklist, string userAdRegDate)
+        static void getPageInfo(IWebDriver driver, string adLink, long userId, string localBlacklist, string globalBlacklist, string userAdRegDate)
         {
             string adTitle = "Не указано";
             string adPrice = "Не указана";
@@ -162,7 +148,6 @@ namespace Parser
             string script;
 
             driver.Navigate().GoToUrl(adLink);
-            Console.WriteLine("zazaza");
 
             try
             {
@@ -261,7 +246,7 @@ namespace Parser
             }
             catch{ return; }
 
-            await Functions.InsertNewAd(userId, userPlatform, adTitle, adPrice, adRegDate.ToString("d"), adLink, adLocation, adImage, sellerName, sellerLink, sellerPhoneNumber, sellerTotalAds.ToString(), sellerRegDate.ToString("d"), sellerType, sellerRating.ToString(), globalBlacklist);
+            Functions.InsertNewAd(userId, userPlatform, adTitle, adPrice, adRegDate.ToString("d"), adLink, adLocation, adImage, sellerName, sellerLink, sellerPhoneNumber, sellerTotalAds.ToString(), sellerRegDate.ToString("d"), sellerType, sellerRating.ToString(), globalBlacklist);
             annoounCount++;
         }
 
@@ -272,7 +257,6 @@ namespace Parser
 
             if(link.Contains("https://www.kuldnebors.ee/"))
             {
-                https://www.kuldnebors.ee/search/telefonid/search.mec?pob_evt=onpageindex&pob_action=search&pob_cat_id=10684&pob_page_index=1&pob_page_size=50&search_O_user_types=-R&pob_evt_param=5
                 if(userSellerType == "Частное лицо")
                 {
                     if(link.Contains("search_O_user_types"))
