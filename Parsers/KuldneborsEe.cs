@@ -168,6 +168,11 @@ namespace Parser
                  
                     var element1 = driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]"));
                     js.ExecuteScript("arguments[0].remove();", element1);
+                    js.ExecuteScript("arguments[0].off();", element1);
+                    js.ExecuteScript("arguments[0].remove();", element1);
+                    js.ExecuteScript("arguments[0].remove();", element1);
+                    js.ExecuteScript("arguments[0].remove();", element1);
+                    js.ExecuteScript("arguments[0].remove();", element1);
                 }
                 catch
                 {
@@ -180,9 +185,11 @@ namespace Parser
 // //                 // var ifPhoneContainsNumber = driver.FindElement(By.LinkText("Näita numbrit"));
 // //                 // // Actions actions = new Actions(driver);
                 js.ExecuteScript("arguments[0].scrollIntoView()", element); 
-                element.Click();
-                 element.Click();
-                 element.Click();
+                var script = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).GetAttribute("onclick");
+                js.ExecuteScript(script);
+//                 element.Click();
+//                  element.Click();
+//                  element.Click();
 
 // //                 // System.Threading.Thread.Sleep(5000);
 // //                 // WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
