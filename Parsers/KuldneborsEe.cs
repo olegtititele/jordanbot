@@ -156,8 +156,12 @@ namespace Parser
 
             try
             {
-                var element = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
+                var element = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a and not(@disabled)"));
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                
+//                 var element1 = driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]"));
+//                 js.ExecuteScript("arguments[0].remove();", element1);
+                
                 js.ExecuteScript("arguments[0].click();", element);
                 System.Threading.Thread.Sleep(3000);
 
