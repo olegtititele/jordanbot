@@ -28,8 +28,6 @@ namespace Parser
             options.AddArgument($"--user-agent={userAgent}");
             options.AddArgument("--disable-gpu");
             options.AddArguments("--headless");
-//             options.AddArguments("--start-maximized");
-            // options.SetPreference("permissions.default.image", 2);
             IWebDriver driver = new FirefoxDriver(options);
 
 
@@ -160,79 +158,8 @@ namespace Parser
             {
                 var element = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-                
-                try
-                {
-                    
-                    
-                 
-                    var element1 = driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]"));
-                    js.ExecuteScript("arguments[0].remove();", element1);
-                    js.ExecuteScript("arguments[0].off();", element1);
-                    js.ExecuteScript("arguments[0].remove();", element1);
-                    js.ExecuteScript("arguments[0].remove();", element1);
-                    js.ExecuteScript("arguments[0].remove();", element1);
-                    js.ExecuteScript("arguments[0].remove();", element1);
-                }
-                catch
-                {
-                    
-                }
- //                     js.ExecuteScript("arguments[0].scrollIntoView(true)", element); 
-                    js.ExecuteScript("arguments[0].click();", element);
                 js.ExecuteScript("arguments[0].click();", element);
-                js.ExecuteScript("arguments[0].click();", element);
-//                     Console.WriteLine(driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).GetAttribute("innerHTML"));
-//                     var getPhoneScript = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).GetAttribute("onclick");
-// //                 // var ifPhoneContainsNumber = driver.FindElement(By.LinkText("Näita numbrit"));
-// //                 // // Actions actions = new Actions(driver);
-//                 js.ExecuteScript("arguments[0].scrollIntoView()", element); 
-//                 var script = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).GetAttribute("onclick");
-//                 js.ExecuteScript(script);
-//                 element.Click();
-//                  element.Click();
-//                  element.Click();
-//                  element.Click();
-//                  element.Click();
-//                  element.Click();
-
-// //                 // System.Threading.Thread.Sleep(5000);
-// //                 // WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-// //                 // actions.MoveToElement(ifPhoneContainsNumber).Click().Build().Perform();
-                
-//                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-//                 js.ExecuteScript(getPhoneScript);
-// //                 js.ExecuteScript(getPhoneScript);
-// //                 js.ExecuteScript(getPhoneScript);
-// //                 js.ExecuteScript(getPhoneScript);
-// //                 js.ExecuteScript(getPhoneScript);
-// //                 // js.ExecuteScript("arguments[0].scrollIntoView()", ifPhoneContainsNumber); 
-// //                 // js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
-// //                 // js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
-// //                 // js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
-// //                 // js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
-// //                 // ifPhoneContainsNumber.Click();
-// //                 // ifPhoneContainsNumber.Click();
-                    
-//                     System.Threading.Thread.Sleep(6000);
-// //                     var element = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
-// //                 Actions action = new Actions(driver);
-// //                 action.MoveToElement(element, element.Size.Width, element.Size.Height).Click().Build().Perform();
-// //                     driver.Navigate().Refresh();
-//                     // IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-//                     js.ExecuteScript(getPhoneScript);
-                    System.Threading.Thread.Sleep(3000);
-// //                 Console.WriteLine(driver.FindElement(By.XPath("//h2[@class=\"modal__title\"]")).GetAttribute("innerHTML"));
-// //                 Console.WriteLine(driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).GetAttribute("innerHTML"));
-
-// //                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
-
-
-// //                 if(driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Contains("Näita numbrit"))
-// //                 {
-// //                     System.Threading.Thread.Sleep(5000);
-// //                     driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Click();
-// //                 }
+                System.Threading.Thread.Sleep(3000);
 
                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
                 Console.WriteLine(sellerPhoneNumber);
