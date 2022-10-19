@@ -184,12 +184,15 @@ namespace Parser
 //                     var getPhoneScript = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).GetAttribute("onclick");
 // //                 // var ifPhoneContainsNumber = driver.FindElement(By.LinkText("Näita numbrit"));
 // //                 // // Actions actions = new Actions(driver);
-                js.ExecuteScript("arguments[0].scrollIntoView()", element); 
-                var script = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).GetAttribute("onclick");
-                js.ExecuteScript(script);
-//                 element.Click();
-//                  element.Click();
-//                  element.Click();
+//                 js.ExecuteScript("arguments[0].scrollIntoView()", element); 
+//                 var script = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).GetAttribute("onclick");
+//                 js.ExecuteScript(script);
+                element.Click();
+                 element.Click();
+                 element.Click();
+                 element.Click();
+                 element.Click();
+                 element.Click();
 
 // //                 // System.Threading.Thread.Sleep(5000);
 // //                 // WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
