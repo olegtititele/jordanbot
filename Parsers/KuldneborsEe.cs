@@ -177,9 +177,9 @@ namespace Parser
 //                 // js.ExecuteScript("arguments[0].click();", ifPhoneContainsNumber);
 //                 // ifPhoneContainsNumber.Click();
 //                 // ifPhoneContainsNumber.Click();
-//                     driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Click();
+                    
                     System.Threading.Thread.Sleep(6000);
-                
+                    driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
                     driver.Navigate().Refresh();
                     // IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                     js.ExecuteScript(getPhoneScript);
