@@ -12,6 +12,7 @@ namespace Parser
         private static int annoounCount = 0;
         private static string userAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1";
         private static string errorImageUri = "https://upload.wikimedia.org/wikipedia/commons/9/9a/%D0%9D%D0%B5%D1%82_%D1%84%D0%BE%D1%82%D0%BE.png";
+        private static string goodLink = "https://www.kuldnebors.ee/search/telefonid/mobiiltelefonide-lisaseadmed/iphone-13-pro-back-case/search.mec?pob_post_id=86525661&pob_action=show_post&pob_cat_id=10946&pob_browser_offset=30&pob_view_language_id=et&search_evt=onsearch&search_O_string=Apple&search_O_user_types=-R&pob_page_index=1";
         private static int pagesPassed = 1;
         private static int adsPassed = 0;
         
@@ -156,10 +157,10 @@ namespace Parser
 
             try
             {
-                var script = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).GetAttribute("onclick").Split(';')[0];
+                var phoneNumberBlock = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
+                var script = phoneNumberBlock.GetAttribute("onclick");
 
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-                js.ExecuteScript(script);
                 js.ExecuteScript(script);
                 System.Threading.Thread.Sleep(1000);
 //                 var element = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
@@ -170,8 +171,16 @@ namespace Parser
                 
 //                 js.ExecuteScript("arguments[0].click();", element);
 
+                sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim();
+                if(sellerPhoneNumber == "Näita numbrit")
+                {
+                    driver.Navigate().GoToUrl(goodLink);
+                    js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", phoneNumberBlock);
+                    js.ExecuteScript(script);
+                    System.Threading.Thread.Sleep(1000);
+                }
+                
                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
-                Console.WriteLine(sellerPhoneNumber);
 
                 if(!sellerPhoneNumber.Contains("+"))
                 {
@@ -184,6 +193,9 @@ namespace Parser
                         sellerPhoneNumber = $"+372{sellerPhoneNumber}";
                     }
                 }
+
+                driver.Navigate().GoToUrl(adLink);
+                Console.WriteLine(sellerPhoneNumber);
             }
             catch(Exception e)
             {
