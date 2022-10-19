@@ -21,17 +21,16 @@ namespace Parser
             pagesPassed = 1;
             adsPassed = 0;
 
-            var options = new FirefoxOptions();
-            options.AddArgument("--no-sandbox");
-            options.AddArgument("--disable-setuid-sandbox");
-            options.AddArgument($"--user-agent={userAgent}");
-            options.AddArgument("--disable-gpu");
-            options.AddArguments("--headless");
-            IWebDriver driver = new FirefoxDriver(options);
-
-
             try
             {   
+                var options = new FirefoxOptions();
+                options.AddArgument("--no-sandbox");
+                options.AddArgument("--disable-setuid-sandbox");
+                options.AddArgument($"--user-agent={userAgent}");
+                options.AddArgument("--disable-gpu");
+                options.AddArguments("--headless");
+                IWebDriver driver = new FirefoxDriver(options);
+
                 userPlatform = DB.GetPlatform(userId);
                 string userLink = DB.GetLink(userId);
                 int userAnnounCount = DB.GetAnnounCount(userId);
