@@ -25,9 +25,9 @@ namespace Parser
             var options = new FirefoxOptions();
             options.AddArgument("--no-sandbox");
             options.AddArgument("--disable-setuid-sandbox");
-//             options.AddArgument($"--user-agent={userAgent}");
-//             options.AddArgument("--disable-gpu");
-//             options.AddArguments("--headless");
+            options.AddArgument($"--user-agent={userAgent}");
+            options.AddArgument("--disable-gpu");
+            options.AddArguments("--headless");
 //             options.AddArguments("--start-maximized");
             // options.SetPreference("permissions.default.image", 2);
             IWebDriver driver = new FirefoxDriver(options);
