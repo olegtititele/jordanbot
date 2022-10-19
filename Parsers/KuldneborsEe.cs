@@ -158,6 +158,7 @@ namespace Parser
             {
                 var script = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).GetAttribute("onclick").Split(';')[0] + ';';
                 Console.WriteLine(script);
+                IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                 js.ExecuteScript(script);
 //                 var element = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
 //                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
