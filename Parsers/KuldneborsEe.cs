@@ -179,7 +179,9 @@ namespace Parser
                     
                 }
  //                     js.ExecuteScript("arguments[0].scrollIntoView(true)", element); 
-//                     js.ExecuteScript("arguments[0].click();", element);
+                    js.ExecuteScript("arguments[0].click();", element);
+                js.ExecuteScript("arguments[0].click();", element);
+                js.ExecuteScript("arguments[0].click();", element);
 //                     Console.WriteLine(driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).GetAttribute("innerHTML"));
 //                     var getPhoneScript = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).GetAttribute("onclick");
 // //                 // var ifPhoneContainsNumber = driver.FindElement(By.LinkText("Näita numbrit"));
@@ -187,12 +189,12 @@ namespace Parser
 //                 js.ExecuteScript("arguments[0].scrollIntoView()", element); 
 //                 var script = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).GetAttribute("onclick");
 //                 js.ExecuteScript(script);
-                element.Click();
-                 element.Click();
-                 element.Click();
-                 element.Click();
-                 element.Click();
-                 element.Click();
+//                 element.Click();
+//                  element.Click();
+//                  element.Click();
+//                  element.Click();
+//                  element.Click();
+//                  element.Click();
 
 // //                 // System.Threading.Thread.Sleep(5000);
 // //                 // WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
