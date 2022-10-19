@@ -56,11 +56,7 @@ namespace Parser
                             List<string> advertisementsLinks = new List<string>();
                             foreach(var advertisement in advertisements)
                             {
-                                string adLink = advertisement.GetAttribute("href").Replace("&pob_browser_offset=10", "&pob_browser_offset=0");
-                                if(!adLink.Contains("&pob_browser_offset"))
-                                {
-                                    adLink = adLink + "&pob_browser_offset=0";
-                                }
+                                string adLink = advertisement.GetAttribute("href");
                                 advertisementsLinks.Add(adLink);
                             }
 
@@ -111,19 +107,28 @@ namespace Parser
         }
 
 
-        private static void GetLinks(IWebDriver driver, List<string> advertisementsLinks, int userAnnounCount, long userId, string localBlacklist, string globalBlacklist, string userAdRegDate)
+        private static async void GetLinks(IWebDriver driver, List<string> advertisementsLinks, int userAnnounCount, long userId, string localBlacklist, string globalBlacklist, string userAdRegDate)
         {
+            Console.WriteLine("Запуск загрузки.");
+            int maxTasks = 20; // максимальное количество одновременно работающих задач
+            using SemaphoreSlim semaphore = new SemaphoreSlim(maxTasks);
+            List<Task> tasks = new List<Task>();
             foreach(string adLink in advertisementsLinks)
             {
                 if(!DB.CheckAdvestisement(userId, adLink))
                 {
                     if(annoounCount < userAnnounCount && DB.GetState(userId)=="Parser")
                     {
-                        Console.WriteLine(adLink);
                         adsPassed++;
                         DB.UpdateStatistic(userId, pagesPassed, adsPassed);
-                        System.Threading.Thread.Sleep(1000);
-                        getPageInfo(driver, adLink, userId, localBlacklist, globalBlacklist, userAdRegDate);
+                        await semaphore.WaitAsync();
+
+                        tasks.Add(Task.Run(async () =>
+                        {
+                            getPageInfo(driver, adLink, userId, localBlacklist, globalBlacklist, userAdRegDate);
+                            semaphore.Release(); // сообщить, что задач стало меньше
+                        }));
+                        
                     }
                     else
                     {
@@ -134,6 +139,8 @@ namespace Parser
                 }
                 continue;
             }
+            await Task.WhenAll(tasks); // ждать завершения всех задач
+            Console.WriteLine("Загрузка завершена.");
         }
 
 
@@ -151,70 +158,18 @@ namespace Parser
             decimal sellerRating = 0.0M;
             DateTime adRegDate = DateTime.Today;
             DateTime sellerRegDate = DateTime.Today;
-
+            IWebElement phoneNumberBlock;
+            string script;
 
             driver.Navigate().GoToUrl(adLink);
 
             try
             {
-                var phoneNumberBlock = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
-                var script = phoneNumberBlock.GetAttribute("onclick");
-
-                IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-                js.ExecuteScript(script);
-                System.Threading.Thread.Sleep(1000);
-//                 var element = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
-//                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-                
-// //                 var element1 = driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]"));
-// //                 js.ExecuteScript("arguments[0].remove();", element1);
-                
-//                 js.ExecuteScript("arguments[0].click();", element);
-
-                sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim();
-                if(sellerPhoneNumber == "Näita numbrit")
-                {
-                    driver.Navigate().GoToUrl(goodLink);
-                    int attempts = 0;
-                    bool result = false;
-                    while(attempts < 2) 
-                    {
-                        try 
-                        {
-                            js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", phoneNumberBlock);
-                            System.Threading.Thread.Sleep(500);
-                            result = true;
-                            break;
-                        } 
-                        catch{ }
-                        attempts++;
-                    }
-                    
-                    if(!result){ return; }
-                    js.ExecuteScript(script);
-                    System.Threading.Thread.Sleep(1000);
-                }
-                
-                sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
-
-                if(!sellerPhoneNumber.Contains("+"))
-                {
-                    if(sellerPhoneNumber.Substring(0, 3) == "372")
-                    {
-                        sellerPhoneNumber = $"+{sellerPhoneNumber}";
-                    }
-                    else
-                    {
-                        sellerPhoneNumber = $"+372{sellerPhoneNumber}";
-                    }
-                }
-
-                driver.Navigate().GoToUrl(adLink);
-                Console.WriteLine(sellerPhoneNumber);
+                phoneNumberBlock = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
+                script = phoneNumberBlock.GetAttribute("onclick");
             }
-            catch(Exception e)
+            catch
             {
-                Console.WriteLine(e);
                 return;
             }
 
@@ -258,6 +213,52 @@ namespace Parser
                 adImage = driver.FindElement(By.XPath($"//img[@alt=\"{adTitle}\"]")).GetAttribute("src");
             }
             catch{}
+
+            try
+            {
+                IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                js.ExecuteScript(script);
+                System.Threading.Thread.Sleep(1000);
+                sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim();
+
+                if(sellerPhoneNumber == "Näita numbrit")
+                {
+                    driver.Navigate().GoToUrl(goodLink);
+                    int attempts = 0;
+                    bool result = false;
+                    while(attempts < 3) 
+                    {
+                        try 
+                        {
+                            js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", phoneNumberBlock);
+                            System.Threading.Thread.Sleep(500);
+                            result = true;
+                            break;
+                        } 
+                        catch{ }
+                        attempts++;
+                    }
+                    
+                    if(!result){ return; }
+                    js.ExecuteScript(script);
+                    System.Threading.Thread.Sleep(1000);
+                }
+                
+                sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
+
+                if(!sellerPhoneNumber.Contains("+"))
+                {
+                    if(sellerPhoneNumber.Substring(0, 3) == "372")
+                    {
+                        sellerPhoneNumber = $"+{sellerPhoneNumber}";
+                    }
+                    else
+                    {
+                        sellerPhoneNumber = $"+372{sellerPhoneNumber}";
+                    }
+                }
+            }
+            catch{ return; }
 
             Functions.InsertNewAd(userId, userPlatform, adTitle, adPrice, adRegDate.ToString("d"), adLink, adLocation, adImage, sellerName, sellerLink, sellerPhoneNumber, sellerTotalAds.ToString(), sellerRegDate.ToString("d"), sellerType, sellerRating.ToString(), globalBlacklist);
             annoounCount++;
