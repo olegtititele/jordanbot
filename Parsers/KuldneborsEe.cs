@@ -160,13 +160,14 @@ namespace Parser
             {
                  IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                     var element = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
-                    js.ExecuteScript("arguments[0].scrollIntoView(true)", element); 
-                    js.ExecuteScript("arguments[0].click();", element);
+                js.ExecuteScript("return document.getElementsByClassName('onetrust-pc-dark-filter ot-fade-in').remove();");
+//                     js.ExecuteScript("arguments[0].scrollIntoView(true)", element); 
+//                     js.ExecuteScript("arguments[0].click();", element);
 //                     Console.WriteLine(driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).GetAttribute("innerHTML"));
 //                     var getPhoneScript = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).GetAttribute("onclick");
 // //                 // var ifPhoneContainsNumber = driver.FindElement(By.LinkText("Näita numbrit"));
 // //                 // // Actions actions = new Actions(driver);
-// //                 // driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]")).Click();
+                element.Click();
 
 // //                 // System.Threading.Thread.Sleep(5000);
 // //                 // WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
