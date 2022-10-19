@@ -57,7 +57,11 @@ namespace Parser
                             List<string> advertisementsLinks = new List<string>();
                             foreach(var advertisement in advertisements)
                             {
-                                string adLink = advertisement.GetAttribute("href");
+                                string adLink = advertisement.GetAttribute("href").Replace("&pob_browser_offset=10", "&pob_browser_offset=0");
+                                if(!adLink.Contains("&pob_browser_offset"))
+                                {
+                                    adLink = adLink + "&pob_browser_offset=0";
+                                }
                                 advertisementsLinks.Add(adLink);
                             }
 
