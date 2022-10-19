@@ -175,7 +175,22 @@ namespace Parser
                 if(sellerPhoneNumber == "Näita numbrit")
                 {
                     driver.Navigate().GoToUrl(goodLink);
-                    js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", phoneNumberBlock);
+                    int attempts = 0;
+                    bool result = false;
+                    while(attempts < 2) 
+                    {
+                        try 
+                        {
+                            js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", phoneNumberBlock);
+                            System.Threading.Thread.Sleep(500);
+                            result = true;
+                            break;
+                        } 
+                        catch{ }
+                        attempts++;
+                    }
+                    
+                    if(!result){ return; }
                     js.ExecuteScript(script);
                     System.Threading.Thread.Sleep(1000);
                 }
