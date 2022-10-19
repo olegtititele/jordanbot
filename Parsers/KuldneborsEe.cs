@@ -179,7 +179,12 @@ namespace Parser
 //                 // ifPhoneContainsNumber.Click();
 //                     driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Click();
                     System.Threading.Thread.Sleep(6000);
-                Console.WriteLine(driver.FindElement(By.XPath("//h2[@class=\"modal__title\"]")).GetAttribute("innerHTML"));
+                
+                    driver.Navigate().Refresh();
+                    // IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                    js.ExecuteScript(getPhoneScript);
+                    System.Threading.Thread.Sleep(3000);
+//                 Console.WriteLine(driver.FindElement(By.XPath("//h2[@class=\"modal__title\"]")).GetAttribute("innerHTML"));
 //                 Console.WriteLine(driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).GetAttribute("innerHTML"));
 
 //                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
