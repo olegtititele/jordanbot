@@ -160,7 +160,7 @@ namespace Parser
             {
                  IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                     var element = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
-                js.ExecuteScript("return document.getElementsByClassName('onetrust-pc-dark-filter ot-fade-in').remove();");
+                    js.ExecuteScript("document.getElementByClassName('onetrust-pc-dark-filter ot-fade-in').remove();");
 //                     js.ExecuteScript("arguments[0].scrollIntoView(true)", element); 
 //                     js.ExecuteScript("arguments[0].click();", element);
 //                     Console.WriteLine(driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).GetAttribute("innerHTML"));
