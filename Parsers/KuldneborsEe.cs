@@ -156,13 +156,16 @@ namespace Parser
 
             try
             {
-                var element = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
-                IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                var script = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).GetAttribute("onclick").Split(';')[0] + ';';
+                Console.WriteLine(script);
+                js.ExecuteScript(script);
+//                 var element = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
+//                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                 
-//                 var element1 = driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]"));
-//                 js.ExecuteScript("arguments[0].remove();", element1);
+// //                 var element1 = driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]"));
+// //                 js.ExecuteScript("arguments[0].remove();", element1);
                 
-                js.ExecuteScript("arguments[0].click();", element);
+//                 js.ExecuteScript("arguments[0].click();", element);
                 System.Threading.Thread.Sleep(3000);
 
                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
