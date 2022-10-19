@@ -179,10 +179,10 @@ namespace Parser
 //                 // ifPhoneContainsNumber.Click();
                     
                     System.Threading.Thread.Sleep(6000);
-                    var element = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
-                Actions action = new Actions(driver);
-                action.MoveToElement(element, element.Size.Width, element.Size.Height).Click().Build().Perform();
-                    driver.Navigate().Refresh();
+//                     var element = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
+//                 Actions action = new Actions(driver);
+//                 action.MoveToElement(element, element.Size.Width, element.Size.Height).Click().Build().Perform();
+//                     driver.Navigate().Refresh();
                     // IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                     js.ExecuteScript(getPhoneScript);
                     System.Threading.Thread.Sleep(3000);
