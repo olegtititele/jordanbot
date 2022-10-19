@@ -158,10 +158,19 @@ namespace Parser
 
             try
             {
-                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-                    var element = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
-                var element1 = driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]"));
-                js.ExecuteScript("arguments[0].remove();", element1);
+                var element = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
+                try
+                {
+                    
+                     IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                 
+                    var element1 = driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]"));
+                    js.ExecuteScript("arguments[0].remove();", element1);
+                }
+                catch
+                {
+                    
+                }
  //                     js.ExecuteScript("arguments[0].scrollIntoView(true)", element); 
 //                     js.ExecuteScript("arguments[0].click();", element);
 //                     Console.WriteLine(driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).GetAttribute("innerHTML"));
