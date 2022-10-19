@@ -125,7 +125,7 @@ namespace Parser
 
                         tasks.Add(Task.Run(async () =>
                         {
-                            getPageInfo(driver, adLink, userId, localBlacklist, globalBlacklist, userAdRegDate);
+                            await getPageInfo(driver, adLink, userId, localBlacklist, globalBlacklist, userAdRegDate);
                             semaphore.Release(); // сообщить, что задач стало меньше
                         }));
                         
@@ -144,7 +144,7 @@ namespace Parser
         }
 
 
-        static void getPageInfo(IWebDriver driver, string adLink, long userId, string localBlacklist, string globalBlacklist, string userAdRegDate)
+        static async Task getPageInfo(IWebDriver driver, string adLink, long userId, string localBlacklist, string globalBlacklist, string userAdRegDate)
         {
             string adTitle = "Не указано";
             string adPrice = "Не указана";
@@ -162,6 +162,7 @@ namespace Parser
             string script;
 
             driver.Navigate().GoToUrl(adLink);
+            Console.WriteLine("zazaza");
 
             try
             {
@@ -260,7 +261,7 @@ namespace Parser
             }
             catch{ return; }
 
-            Functions.InsertNewAd(userId, userPlatform, adTitle, adPrice, adRegDate.ToString("d"), adLink, adLocation, adImage, sellerName, sellerLink, sellerPhoneNumber, sellerTotalAds.ToString(), sellerRegDate.ToString("d"), sellerType, sellerRating.ToString(), globalBlacklist);
+            await Functions.InsertNewAd(userId, userPlatform, adTitle, adPrice, adRegDate.ToString("d"), adLink, adLocation, adImage, sellerName, sellerLink, sellerPhoneNumber, sellerTotalAds.ToString(), sellerRegDate.ToString("d"), sellerType, sellerRating.ToString(), globalBlacklist);
             annoounCount++;
         }
 
