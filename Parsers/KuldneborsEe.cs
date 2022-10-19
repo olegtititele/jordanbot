@@ -160,6 +160,7 @@ namespace Parser
                 Console.WriteLine(script);
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                 js.ExecuteScript(script);
+                System.Threading.Thread.Sleep(1000);
 //                 var element = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
 //                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                 
