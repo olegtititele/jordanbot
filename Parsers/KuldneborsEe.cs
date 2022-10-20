@@ -200,8 +200,15 @@ namespace Parser
             {
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                 js.ExecuteScript(script);
+                
                 js.ExecuteScript($"arguments[0].remove();", driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]")));
-                System.Threading.Thread.Sleep(1000);
+                driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
+                driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
+                driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
+                driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
+                driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
+                driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
+                System.Threading.Thread.Sleep(10000);
                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim();
                 
 //                 if(sellerPhoneNumber == "Näita numbrit")
@@ -229,7 +236,7 @@ namespace Parser
 //                     Console.WriteLine(script);
 //                     Console.WriteLine(driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]")).GetAttribute("innerHTML"));
 // //                     driver.FindElement(By.XPath("//h1[@class=\"kb-object-view__heading\"]")).Click();
-                    driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
+                    
 //                     js.ExecuteScript(script.Split(';')[0]);
 //                     js.ExecuteScript(script.Split(';')[0]);
 //                     js.ExecuteScript(script.Split(';')[0]);
