@@ -200,9 +200,10 @@ namespace Parser
             {
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                 js.ExecuteScript(script);
+                js.ExecuteScript($"arguments[0].remove();", driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]")));
                 System.Threading.Thread.Sleep(1000);
                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim();
-
+                
 //                 if(sellerPhoneNumber == "Näita numbrit")
 //                 {
 //                     driver.Navigate().GoToUrl(goodLink);
