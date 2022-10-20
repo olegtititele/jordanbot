@@ -225,7 +225,7 @@ namespace Parser
                     js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")));
                     System.Threading.Thread.Sleep(1000);
                     Console.WriteLine(script);
-                    Console.WriteLine(driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]")).GetAttribute("innerHtml"));
+                    Console.WriteLine(driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]")).GetAttribute("innerHTML"));
                     js.ExecuteScript(script);
                     System.Threading.Thread.Sleep(1000);
                 }
