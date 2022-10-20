@@ -199,6 +199,9 @@ namespace Parser
             try
             {
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                Actions actions = new Actions(driver);
+                actions.MoveToElement(driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")));
+                actions.Perform();
 //                 js.ExecuteScript("document.getElementById('contact-phones').click();");
                 try
                 {
