@@ -225,7 +225,7 @@ namespace Parser
                     js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")));
                     System.Threading.Thread.Sleep(1000);
                     Console.WriteLine(script);
-                    Console.WriteLine(driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).GetAttribute("innerHtml"));
+                    Console.WriteLine(driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]")).GetAttribute("innerHtml"));
                     js.ExecuteScript(script);
                     System.Threading.Thread.Sleep(1000);
                 }
@@ -244,7 +244,7 @@ namespace Parser
                     }
                 }
             }
-            catch{ return; }
+            catch(Exception e){ Console.WriteLine(e); return; }
 
             if(Functions.check_blacklist_ads(userId, sellerPhoneNumber, globalBlacklist, localBlacklist)){ }else{ Console.WriteLine(sellerPhoneNumber); return; }
 
