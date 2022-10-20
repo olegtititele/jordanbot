@@ -144,14 +144,13 @@ namespace Parser
             decimal sellerRating = 0.0M;
             DateTime adRegDate = DateTime.Today;
             DateTime sellerRegDate = DateTime.Today;
-            IWebElement phoneNumberBlock;
             string script;
 
             driver.Navigate().GoToUrl(adLink);
 
             try
             {
-                phoneNumberBlock = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
+                IWebElement phoneNumberBlock = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
                 script = phoneNumberBlock.GetAttribute("onclick");
             }
             catch
@@ -213,7 +212,7 @@ namespace Parser
                     {
                         try 
                         {
-                            js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", phoneNumberBlock);
+                            js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")));
                             System.Threading.Thread.Sleep(500);
                             result = true;
                             break;
