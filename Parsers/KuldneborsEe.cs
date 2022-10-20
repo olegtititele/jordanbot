@@ -199,9 +199,14 @@ namespace Parser
             try
             {
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-                js.ExecuteScript("document.getElementById('contact-phones').click();");
-                js.ExecuteScript($"arguments[0].remove();", driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]")));
-//                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
+//                 js.ExecuteScript("document.getElementById('contact-phones').click();");
+                try
+                {
+                    
+                    js.ExecuteScript($"arguments[0].remove();", driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]")));
+                }
+                catch{}
+                driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
 //                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
 //                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
 //                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
