@@ -209,6 +209,8 @@ namespace Parser
                 js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")));
                   System.Threading.Thread.Sleep(1000);
                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
+                js.ExecuteScript(script);
+                js.ExecuteScript(script);
 //                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
 //                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
 //                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
