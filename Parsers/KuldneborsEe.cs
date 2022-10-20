@@ -1,7 +1,7 @@
 using PostgreSQL;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
-
+using OpenQA.Selenium.Interactions;
 namespace Parser
 {
     public class KuldneborsEe
