@@ -222,7 +222,7 @@ namespace Parser
 //                     }
                     
 //                     if(!result){ return; }
-                    js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script.Split(';')[0}}\");", driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")));
+                    js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script.Split(';')[0]}\");", driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")));
                     System.Threading.Thread.Sleep(1000);
                     Console.WriteLine(script);
                     Console.WriteLine(driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]")).GetAttribute("innerHTML"));
