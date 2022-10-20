@@ -203,39 +203,39 @@ namespace Parser
                 System.Threading.Thread.Sleep(1000);
                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim();
 
-                if(sellerPhoneNumber == "Näita numbrit")
-                {
-                    driver.Navigate().GoToUrl(goodLink);
-                    int attempts = 0;
-                    bool result = false;
-//                     while(attempts < 3) 
-//                     {
-//                         try 
-//                         {
-//                             js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")));
-//                             System.Threading.Thread.Sleep(500);
-//                             result = true;
-//                             break;
-//                         } 
-//                         catch(Exception e){ Console.WriteLine(e); }
-//                         attempts++;
-//                     }
+//                 if(sellerPhoneNumber == "Näita numbrit")
+//                 {
+//                     driver.Navigate().GoToUrl(goodLink);
+//                     int attempts = 0;
+//                     bool result = false;
+// //                     while(attempts < 3) 
+// //                     {
+// //                         try 
+// //                         {
+// //                             js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")));
+// //                             System.Threading.Thread.Sleep(500);
+// //                             result = true;
+// //                             break;
+// //                         } 
+// //                         catch(Exception e){ Console.WriteLine(e); }
+// //                         attempts++;
+// //                     }
                     
-//                     if(!result){ return; }
-                    js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", driver.FindElement(By.XPath("//h1[@class=\"kb-object-view__heading\"]")));
-                    js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")));
-                    System.Threading.Thread.Sleep(1000);
-                    Console.WriteLine(script);
-                    Console.WriteLine(driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]")).GetAttribute("innerHTML"));
-//                     driver.FindElement(By.XPath("//h1[@class=\"kb-object-view__heading\"]")).Click();
-//                     driver.FindElement(By.XPath("//h1[@class=\"kb-object-view__heading\"]")).Click();
-                    js.ExecuteScript(script.Split(';')[0]);
-                    js.ExecuteScript(script.Split(';')[0]);
-                    js.ExecuteScript(script.Split(';')[0]);
-//                     js.ExecuteScript(script);
-//                     js.ExecuteScript(script);
-                    System.Threading.Thread.Sleep(1000);
-                }
+// //                     if(!result){ return; }
+//                     js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", driver.FindElement(By.XPath("//h1[@class=\"kb-object-view__heading\"]")));
+//                     js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")));
+//                     System.Threading.Thread.Sleep(1000);
+//                     Console.WriteLine(script);
+//                     Console.WriteLine(driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]")).GetAttribute("innerHTML"));
+// //                     driver.FindElement(By.XPath("//h1[@class=\"kb-object-view__heading\"]")).Click();
+// //                     driver.FindElement(By.XPath("//h1[@class=\"kb-object-view__heading\"]")).Click();
+//                     js.ExecuteScript(script.Split(';')[0]);
+//                     js.ExecuteScript(script.Split(';')[0]);
+//                     js.ExecuteScript(script.Split(';')[0]);
+// //                     js.ExecuteScript(script);
+// //                     js.ExecuteScript(script);
+//                     System.Threading.Thread.Sleep(1000);
+//                 }
                 
                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim().Replace(" ", "");
 
@@ -250,6 +250,8 @@ namespace Parser
                         sellerPhoneNumber = $"+372{sellerPhoneNumber}";
                     }
                 }
+                
+                Console.WriteLine(sellerPhoneNumber);
             }
             catch(Exception e){ Console.WriteLine(e); return; }
 
