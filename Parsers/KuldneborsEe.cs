@@ -227,11 +227,11 @@ namespace Parser
                     System.Threading.Thread.Sleep(1000);
                     Console.WriteLine(script);
                     Console.WriteLine(driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]")).GetAttribute("innerHTML"));
-                    driver.FindElement(By.XPath("//h1[@class=\"kb-object-view__heading\"]")).Click();
-                    driver.FindElement(By.XPath("//h1[@class=\"kb-object-view__heading\"]")).Click();
-//                     js.ExecuteScript(script.Split(';')[0]);
-//                     js.ExecuteScript(script.Split(';')[0]);
-//                     js.ExecuteScript(script.Split(';')[0]);
+//                     driver.FindElement(By.XPath("//h1[@class=\"kb-object-view__heading\"]")).Click();
+//                     driver.FindElement(By.XPath("//h1[@class=\"kb-object-view__heading\"]")).Click();
+                    js.ExecuteScript(script.Split(';')[0]);
+                    js.ExecuteScript(script.Split(';')[0]);
+                    js.ExecuteScript(script.Split(';')[0]);
 //                     js.ExecuteScript(script);
 //                     js.ExecuteScript(script);
                     System.Threading.Thread.Sleep(1000);
