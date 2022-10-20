@@ -159,9 +159,6 @@ namespace Parser
                 return;
             }
 
-            if(Functions.check_blacklist_ads(userId, sellerPhoneNumber, globalBlacklist, localBlacklist)){ }else{ return; }
-
-
             try
             {
                 adRegDate = Convert.ToDateTime(driver.FindElement(By.XPath("//div[@class=\"kb-object-view__meta-data\"]")).Text.Split(" ")[^1]);
@@ -245,6 +242,8 @@ namespace Parser
                 }
             }
             catch{ return; }
+
+            if(Functions.check_blacklist_ads(userId, sellerPhoneNumber, globalBlacklist, localBlacklist)){ }else{ return; }
 
             Functions.InsertNewAd(userId, userPlatform, adTitle, adPrice, adRegDate.ToString("d"), adLink, adLocation, adImage, sellerName, sellerLink, sellerPhoneNumber, sellerTotalAds.ToString(), sellerRegDate.ToString("d"), sellerType, sellerRating.ToString(), globalBlacklist);
             annoounCount++;
