@@ -218,7 +218,7 @@ namespace Parser
                             result = true;
                             break;
                         } 
-                        catch{ }
+                        catch(Exception e){ Console.WriteLine(e); }
                         attempts++;
                     }
                     
