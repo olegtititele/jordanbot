@@ -208,20 +208,24 @@ namespace Parser
                     driver.Navigate().GoToUrl(goodLink);
                     int attempts = 0;
                     bool result = false;
-                    while(attempts < 3) 
-                    {
-                        try 
-                        {
-                            js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")));
-                            System.Threading.Thread.Sleep(500);
-                            result = true;
-                            break;
-                        } 
-                        catch(Exception e){ Console.WriteLine(e); }
-                        attempts++;
-                    }
+//                     while(attempts < 3) 
+//                     {
+//                         try 
+//                         {
+//                             js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")));
+//                             System.Threading.Thread.Sleep(500);
+//                             result = true;
+//                             break;
+//                         } 
+//                         catch(Exception e){ Console.WriteLine(e); }
+//                         attempts++;
+//                     }
                     
-                    if(!result){ return; }
+//                     if(!result){ return; }
+                    js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")));
+                    System.Threading.Thread.Sleep(1000);
+                    Console.WriteLine(script);
+                    Console.WriteLine(driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).GetAttribute("innerHtml"))
                     js.ExecuteScript(script);
                     System.Threading.Thread.Sleep(1000);
                 }
