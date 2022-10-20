@@ -250,7 +250,7 @@ namespace Parser
                         sellerPhoneNumber = $"+372{sellerPhoneNumber}";
                     }
                 }
-                
+                Console.WriteLine(adLink);
                 Console.WriteLine(sellerPhoneNumber);
             }
             catch(Exception e){ Console.WriteLine(e); return; }
