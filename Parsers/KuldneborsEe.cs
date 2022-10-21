@@ -145,12 +145,13 @@ namespace Parser
             DateTime adRegDate = DateTime.Today;
             DateTime sellerRegDate = DateTime.Today;
             string script;
+            IWebElement phoneNumberBlock;
 
             driver.Navigate().GoToUrl(adLink);
             System.Threading.Thread.Sleep(2000);
             try
             {
-                IWebElement phoneNumberBlock = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
+                phoneNumberBlock = driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a"));
                 script = phoneNumberBlock.GetAttribute("onclick");
             }
             catch
@@ -199,23 +200,24 @@ namespace Parser
             try
             {
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-//                 js.ExecuteScript("document.getElementById('contact-phones').click();");
-                try
-                {
+                js.ExecuteScript($"arguments[0].setAttribute(\"onclick\", \"{script}\");", phoneNumberBlock);
+// //                 js.ExecuteScript("document.getElementById('contact-phones').click();");
+//                 try
+//                 {
                     
-                    js.ExecuteScript($"arguments[0].remove();", driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]")));
-                }
-                catch{}
-                js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")));
+//                     js.ExecuteScript($"arguments[0].remove();", driver.FindElement(By.XPath("//div[@class=\"onetrust-pc-dark-filter ot-fade-in\"]")));
+//                 }
+//                 catch{}
+//                 js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")));
                   
-                driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
+//                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
                 System.Threading.Thread.Sleep(1000);
-//                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
-//                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
-//                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
-//                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
-//                 System.Threading.Thread.Sleep(10000);
-                sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim();
+// //                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
+// //                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
+// //                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
+// //                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
+// //                 System.Threading.Thread.Sleep(10000);
+//                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim();
                 
 //                 if(sellerPhoneNumber == "Näita numbrit")
 //                 {
