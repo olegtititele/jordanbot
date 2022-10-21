@@ -207,16 +207,14 @@ namespace Parser
                 }
                 catch{}
                 js.ExecuteScript("arguments[0].scrollIntoView();", driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")));
-                  System.Threading.Thread.Sleep(1000);
+                  
                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
-                js.ExecuteScript(script);
-                js.ExecuteScript(script);
+                System.Threading.Thread.Sleep(1000);
 //                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
 //                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
 //                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
 //                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
-//                 driver.FindElement(By.XPath("//*[@id=\"contact-phones\"]/a")).Click();
-                System.Threading.Thread.Sleep(10000);
+//                 System.Threading.Thread.Sleep(10000);
                 sellerPhoneNumber = driver.FindElement(By.XPath("//span[@id=\"contact-phones\"]")).Text.Trim();
                 
 //                 if(sellerPhoneNumber == "Näita numbrit")
